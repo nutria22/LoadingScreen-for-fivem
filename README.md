@@ -19,7 +19,6 @@ A beautifully designed YouTube video player with particle animations to use as a
 # Usage
  - Download or clone the repository.
  - Customize the settings in the "config.js" file, including the list of YouTube videos you want to play.
- - Open the index.html file in a browser.
 
 # Note
  - Videos must comply with copyright policies and must not be private.
