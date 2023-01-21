@@ -27,4 +27,4 @@ A beautifully designed YouTube video player with particle animations to use as a
 # Contributions
  - If you would like to contribute to the project, that would be great! Please send a pull request and describe your changes. We are open to any ideas or suggestions to improve the project. 🙌
 
-
+join here for support: https://discord.gg/070scripts
