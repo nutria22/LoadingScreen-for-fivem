@@ -1,0 +1,118 @@
+<html>
+   <head>
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+      <link rel="stylesheet" href="assets/style.css">
+      <script src="config.js"></script>
+      <script src="assets/particles.js"></script>
+      <script src="config.js"></script>
+   </head>
+   <body>
+      <div id="volumePanel">
+         <i class="fas fa-volume-down" style="margin-right: 5px;"></i>
+         <input type="range" min="1" max="100" id="volumeSlider" value="25">
+         <i class="fas fa-volume-up" style="margin-left: 5px;"></i>
+      </div>
+      <div id="particles-js"></div>
+      <div id="video-controls">
+         <input type="range" id="progressBar" min="0" max="100" value="0">
+      </div>
+      <div id="change-song-help">
+        <link href="https://fonts.googleapis.com/css?family=Sofia&effect=neon" rel="stylesheet">
+         <i class="fa fa-arrow-up"></i> Cambia la canción con las flechas del teclado <i class="fa fa-arrow-down"></i>
+      </div>
+      <script>
+         var videoIds = Config.videoIds;
+         var currentVideoIndex = 0;
+         var videoId = videoIds[0];
+         var scriptelement = document.createElement("script");
+         scriptelement.src = "https://www.youtube.com/iframe_api";
+         var scripttag = document.getElementsByTagName("script")[0];
+         scripttag.parentNode.insertBefore(scriptelement, scripttag);
+         var player;
+         
+         function onYouTubeIframeAPIReady() {
+           player = new YT.Player("video", {
+             videoId: videoId,
+             playerVars: {
+               "playlist": videoId,
+               "autoplay": 1,
+               "controls": 0,
+               "disablekb": 1,
+               "showinfo": 0,
+               "mute": 0,
+               "rel": 0,
+               "enablejsapi": 1,
+               "loop": 1
+             },
+             events: {
+               "onReady": onStart,
+               "onError": onError
+             }
+           });
+         }
+         var volumeSlider = document.getElementById("volumeSlider");
+         
+         function onStart(event) {
+           var defaultVolume = localStorage.getItem(`volumeSlider-${videoId}`) || 25
+           event.target.setVolume(defaultVolume);
+           event.target.setPlaybackQuality("highres");
+           event.target.playVideo();
+           volumeSlider.setAttribute("value", defaultVolume);
+           onVolume();
+           volumeSlider.addEventListener("input", onVolume, false);
+           document.getElementById("volumePanel").style.left = "-3.5%";
+           if (Config.particlesEnabled) {
+             particlesJS('particles-js', Config.particlesOptions);
+           }
+           document.getElementById("logo").src = Config.serverLogo;
+           document.getElementById("logo").style.bottom = "3%";
+           document.addEventListener("keydown", function(event) {
+             if (event.keyCode === 39) {
+               currentVideoIndex++;
+               if (currentVideoIndex >= videoIds.length) {
+                 currentVideoIndex = 0;
+               }
+               videoId = videoIds[currentVideoIndex];
+               player.loadVideoById(videoId);
+             } else if (event.keyCode === 37) {
+               currentVideoIndex--;
+               if (currentVideoIndex < 0) {
+                 currentVideoIndex = videoIds.length - 1;
+               }
+               videoId = videoIds[currentVideoIndex];
+               player.loadVideoById(videoId);
+             } else if (event.keyCode === 32) {
+               if (player.getPlayerState() === 1) {
+                 player.pauseVideo();
+               } else if (player.getPlayerState() === 2) {
+                 player.playVideo();
+               }
+             }
+           });
+         }
+         
+         function onError() {
+           document.getElementById("video").style.display = "none";
+         }
+         
+         function onVolume() {
+           value = volumeSlider.value
+           volumeSlider.style.background = `linear-gradient(90deg, ${Config.mainColor} ${value}%, #5f5f5f ${value}%)`;
+           player.setVolume(value - 1);
+           localStorage.setItem(`volumeSlider-${videoId}`, value);
+         }
+         var progressBar = document.getElementById("progressBar");
+         progressBar.addEventListener("input", function() {
+           var time = player.getDuration() * (progressBar.value / 100);
+           player.seekTo(time);
+         });
+         setInterval(function() {
+           var percentage = (player.getCurrentTime() / player.getDuration()) * 100;
+           progressBar.style.background = `linear-gradient(90deg, red ${percentage}%, #5f5f5f ${percentage}%)`;
+           progressBar.value = percentage;
+         }, 1000);
+      </script>
+      <div id="video"></div>
+      <img id="logo">
+   </body>
+</html>
