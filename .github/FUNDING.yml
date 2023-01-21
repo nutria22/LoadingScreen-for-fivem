@@ -1,2 +1,2 @@
-
-discord: https://discord.gg/070scripts
+- name: Discord Notifier
+  uses: fateyan/action-discord-notifier@v1.2.0
