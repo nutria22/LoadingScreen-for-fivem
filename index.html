@@ -22,8 +22,8 @@
       </div>
       <script>
          var videoIds = Config.videoIds;
-         var currentVideoIndex = 0;
-         var videoId = videoIds[0];
+         var currentVideoIndex = Math.floor(Math.random() * videoIds.length);
+         var videoId = videoIds[currentVideoIndex];
          var scriptelement = document.createElement("script");
          scriptelement.src = "https://www.youtube.com/iframe_api";
          var scripttag = document.getElementsByTagName("script")[0];
@@ -111,6 +111,14 @@
            progressBar.style.background = `linear-gradient(90deg, red ${percentage}%, #5f5f5f ${percentage}%)`;
            progressBar.value = percentage;
          }, 1000);
+         var playButton = document.getElementById("play-button");
+         playButton.addEventListener("click", function() {
+           if (player.getPlayerState() === 1) {
+             player.pauseVideo();
+           } else {
+             player.playVideo();
+           }
+         });
       </script>
       <div id="video"></div>
       <img id="logo">
