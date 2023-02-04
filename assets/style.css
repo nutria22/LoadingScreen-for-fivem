@@ -89,7 +89,7 @@ head, body {
     margin: 10px auto;
     border-radius: 5px;
     position: relative;
-    box-shadow: 0px 0px 5px 0px #ffffffc4; /* Agrega sombra */
+    box-shadow: 0px 0px 5px 0px #ffffffc4; 
 }
 
 #change-song-help {
@@ -97,7 +97,7 @@ head, body {
     text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #1d201c7e, 0 0 30px #cfebc788, 0 0 40px #0507059a, 0 0 55px #d6e7d179, 0 0 75px #74807198;
     position: absolute;
     border-radius: 5px;
-    box-shadow: 0px 0px 5px 0px #777777c4; /* Agrega sombra */
+    box-shadow: 0px 0px 5px 0px #777777c4;
     background: linear-gradient(10deg, rgba(36, 33, 33, 0.747), rgba(0, 0, 0, 0.808));
 
     bottom: 23px;
@@ -109,7 +109,6 @@ head, body {
 }
   
 #volumeSlider {
-    -webkit-appearance: none;
     height: 5px;
     outline: 0;
     border: 0;
