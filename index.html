@@ -17,7 +17,7 @@
          <input type="range" id="progressBar" min="0" max="100" value="0">
       </div>
       <div id="change-song-help">
-        <link href="https://fonts.googleapis.com/css?family=Sofia&effect=neon" rel="stylesheet">
+         <link href="https://fonts.googleapis.com/css?family=Sofia&effect=neon" rel="stylesheet">
          <i class="fa fa-arrow-up"></i> Cambia la canción con las flechas del teclado <i class="fa fa-arrow-down"></i>
       </div>
       <script>
@@ -66,6 +66,19 @@
            }
            document.getElementById("logo").src = Config.serverLogo;
            document.getElementById("logo").style.bottom = "3%";
+           document.addEventListener("keydown", function(event) {
+         if (event.keyCode === 38) {
+         player.setVolume(player.getVolume() + 10);
+         } else if (event.keyCode === 40) {
+         player.setVolume(player.getVolume() - 10);
+         }
+         });
+         document.addEventListener("keydown", function(event) {
+         if (event.keyCode === 40) {
+         currentVolume = player.getVolume();
+         player.setVolume(currentVolume - 5);
+         }
+         });
            document.addEventListener("keydown", function(event) {
              if (event.keyCode === 39) {
                currentVideoIndex++;
