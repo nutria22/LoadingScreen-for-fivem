@@ -135,9 +135,9 @@ i {
 #logo {
     z-index: -2;
     position: absolute;
-    bottom: -10%;
-    right: 1.2%;
-    width: 175px;
+    bottom: 100%;
+    top: 42%;
+    left: 45%;
     height: 175px;
     transition: bottom 1s;
     animation: beat 1s infinite alternate;
