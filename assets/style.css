@@ -146,21 +146,38 @@ button, button2, button3 {
     }
 
 button {
-	width: 50px;
-	height: 50px;
+    width: 50px;
+    height: 50px;
     background-color: rgba(0, 0, 0, 0.5); /* Color negro con una opacidad del 50% */
-	position: absolute;
-	top: 10%;
-	left: 1450px;
+    position: absolute;
+    top: 10%;
+    left: 1450px;
+    width: 130px;
+    overflow: visible;
+    box-shadow: 0px 0px 5px 0px #fdfdfdc4;
+    border-radius: 5px;
+    padding: 10px;
+    color: #fff;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.2s ease-in-out;
 }
-
+button:hover {
+    transform: scale(1.1);
+    background-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0px 0px 10px 0px #fdfdfdc4;
+    }
 button2 {
 	width: 50px;
 	height: 50px;
     background-color: rgba(0, 0, 0, 0.5); /* Color negro con una opacidad del 50% */
 	position: absolute;
 	top: 10%;
-	left: 1750px;
+	left: 1650px;
+    width: 133px;
+	overflow: visible;
+	border-radius: 5px;
 }
 
 button3 {
@@ -170,6 +187,9 @@ button3 {
 	position: absolute;
 	top: 10%;
 	left: 1850px;
+    width: 133px;
+	overflow: visible;
+	border-radius: 5px;
 }
 
 #logo {

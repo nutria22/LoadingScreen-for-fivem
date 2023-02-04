@@ -16,9 +16,7 @@
         <button>Boton</button>
         <button2>Boton</button2>
         <button3>Boton</button3>
-        
       </div>
-      
       <div id="particles-js"></div>
       <div id="video-controls">
          <input type="range" id="progressBar" min="0" max="100" value="0">
@@ -36,7 +34,6 @@
          var scripttag = document.getElementsByTagName("script")[0];
          scripttag.parentNode.insertBefore(scriptelement, scripttag);
          var player;
-         
          function onYouTubeIframeAPIReady() {
            player = new YT.Player("video", {
              videoId: videoId,
@@ -58,7 +55,6 @@
            });
          }
          var volumeSlider = document.getElementById("volumeSlider");
-         
          function onStart(event) {
            var defaultVolume = localStorage.getItem(`volumeSlider-${videoId}`) || 25
            event.target.setVolume(defaultVolume);
@@ -110,11 +106,9 @@
              }
            });
          }
-         
          function onError() {
            document.getElementById("video").style.display = "none";
          }
-         
          function onVolume() {
            value = volumeSlider.value
            volumeSlider.style.background = `linear-gradient(90deg, ${Config.mainColor} ${value}%, #5f5f5f ${value}%)`;
